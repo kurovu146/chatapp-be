@@ -8,12 +8,14 @@ async function bootstrap() {
 
   const nestAppOpt: NestApplicationOptions = {
     logger: logger,
+    cors: true
   };
   const app = await NestFactory.create(AppModule, { rawBody: true, ...nestAppOpt});
 
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
-
+  app.setGlobalPrefix('api');
+  
   await app.listen(3000);
 }
 bootstrap();
