@@ -8,12 +8,6 @@ import { Public } from 'src/shared/constants';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
-  @Post()
-  async createUser(@Body() body: Prisma.UserCreateInput) {
-    return this.usersService.createUser(body);
-  }
-
-  @Public()
   @Get()
   async getAllUser() {
     return this.usersService.getAllUser();
