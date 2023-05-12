@@ -14,9 +14,10 @@ export class AuthService {
     if (user?.password !== pass) {
       throw new HttpException('Username or password is invalid!', HttpStatus.NOT_FOUND);
     }
-    const payload = { username: user.username, id: user.id };
+    const payload = { username: user.username, id: user.id , email: user.email};
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      accessToken: await this.jwtService.signAsync(payload),
+      ...payload
     };
   }
 }

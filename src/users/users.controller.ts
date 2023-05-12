@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/users.dto';
 import { Prisma } from '@prisma/client';
 import { Public } from 'src/shared/constants';
 
@@ -8,6 +7,7 @@ import { Public } from 'src/shared/constants';
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
+  @Public()
   @Get()
   async getAllUser() {
     return this.usersService.getAllUser();
